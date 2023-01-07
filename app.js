@@ -5,26 +5,27 @@ const json = require('koa-json')
 const onerror = require('koa-onerror')
 const bodyparser = require('koa-bodyparser')
 const logger = require('koa-logger')
+const static = require('koa-static')
 
 const index = require('./routes/index')
 const users = require('./routes/users')
 
-// error handler
+// error handler 错误处理器
 onerror(app)
 
-// middlewares
-app.use(bodyparser({
+// middlewares 中间件(app.use(...))
+app.use(bodyparser({ // request body 转换
   enableTypes:['json', 'form', 'text']
 }))
 app.use(json())
-app.use(logger())
-app.use(require('koa-static')(__dirname + '/public'))
+app.use(logger()) // 日志格式
+app.use(static(__dirname + '/public')) // 静态文件服务
 
-app.use(views(__dirname + '/views', {
+app.use(views(__dirname + '/views', { // 服务端模板引擎
   extension: 'pug'
 }))
 
-// logger
+// logger 打印当前请求所花费的时间
 app.use(async (ctx, next) => {
   const start = new Date()
   await next()
@@ -32,7 +33,7 @@ app.use(async (ctx, next) => {
   console.log(`${ctx.method} ${ctx.url} - ${ms}ms`)
 })
 
-// routes
+// routes 注册路由
 app.use(index.routes(), index.allowedMethods())
 app.use(users.routes(), users.allowedMethods())
 
