@@ -9,6 +9,7 @@ const static = require('koa-static')
 
 const index = require('./routes/index')
 const users = require('./routes/users')
+const comments = require('./routes/comments')
 
 // error handler 错误处理器
 onerror(app)
@@ -36,6 +37,9 @@ app.use(async (ctx, next) => {
 // routes 注册路由
 app.use(index.routes(), index.allowedMethods())
 app.use(users.routes(), users.allowedMethods())
+app.use(comments.routes(), comments.allowedMethods())
+// allowedMethods( )对于404或者返回是空的情况，的一种补充
+
 
 // error-handling
 app.on('error', (err, ctx) => {
