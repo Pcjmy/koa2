@@ -8,13 +8,13 @@ router.get('/list', async (ctx) => {
   const query = ctx.query
   console.log('query', query)
   // ctx.body = 'api list'
+
+  // 获取数据库的列表
+  const commentList = await Comment.find().sort({_id: -1})
+
   ctx.body = {
     errno: 0,
-    data: [
-      { content: '留言1', user: 'hello1' },
-      { content: '留言2', user: 'hello2' },
-      { content: '留言3', user: 'hello3' }
-    ]
+    data: commentList
   }
 })
 
