@@ -1,4 +1,5 @@
 const router = require('koa-router')()
+const { Comment } = require('../db/model')
 
 router.prefix('/api') // 前缀
 
@@ -22,6 +23,15 @@ router.post('/create', async (ctx) => {
   // ctx.body = 'api create'
   const body = ctx.request.body // request body
   console.log('body', body)
+
+  // 获取数据
+  const { content, username } = body
+  // 插入到数据库
+  const newComment = await Comment.create({
+    content,
+    username
+  })
+
   ctx.body = {
     errno: 0,
     message: '成功'

@@ -41,16 +41,16 @@ app.use(async (ctx, next) => {
 });
 
 // 模拟登录(为了使用中间件)
-app.use(async (ctx, next) => {
-  const query = ctx.query;
-  if (query.user === "zhangsan") {
-    // 模拟登录成功
-    await next();
-  } else {
-    // 模拟登录失败
-    ctx.body = "请登录";
-  }
-});
+// app.use(async (ctx, next) => {
+//   const query = ctx.query;
+//   if (query.user === "zhangsan") {
+//     // 模拟登录成功
+//     await next();
+//   } else {
+//     // 模拟登录失败
+//     ctx.body = "请登录";
+//   }
+// });
 
 // routes 注册路由
 app.use(index.routes(), index.allowedMethods());
