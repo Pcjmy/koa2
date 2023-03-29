@@ -5,6 +5,14 @@
 node v14.15.1
 npm 6.14.8
 
+## Koa2
+
+**session**
+
++ cookie存储用户标识，如userld
++ 用户信息则存储到session中
++ session即用户信息的存储，和cookie有对应关系
+
 ## 出现的错误
 
 ```shell
