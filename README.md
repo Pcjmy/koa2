@@ -13,7 +13,7 @@ npm 6.14.8
 + 每个域都可有一个cookie ，跨域不共享
 + 格式如k1=v1;k2=v2;k3=v3;(可结构化)
 + 每次 http请求，cookie都会随着传递到服务端
-+ 服务端可修改cookie 再返回给前端
++ 服务端可修改cookie再返回给前端
 + 默认，跨域不可传递cookie
 
 ### session

@@ -6,6 +6,7 @@ const onerror = require("koa-onerror");
 const bodyparser = require("koa-bodyparser");
 const logger = require("koa-logger");
 const static = require("koa-static");
+const session = require("koa-generic-session")
 
 const index = require("./routes/index");
 const users = require("./routes/users");
@@ -31,6 +32,17 @@ app.use(
     extension: "pug",
   })
 );
+
+app.keys = ['session-koa2'] // 秘钥
+// 自动配置了cookie和session
+app.use(session({
+  // 配置cookie
+  cookie: {
+    path: '/', // cookie在根目录下有效
+    httpOnly: true, // cookie只允许服务端来操作
+    maxAge: 24 * 60 * 60 * 1000 // cookie的过期时间
+  }
+}))
 
 // logger 打印当前请求所花费的时间
 app.use(async (ctx, next) => {
