@@ -7,7 +7,13 @@ npm 6.14.8
 
 ## Koa2
 
-**session**
+### cookie
+
++ 存储在浏览器的一段字符串，最大5kb
++ 每个域都可有一个cookie ，跨域不共享
++ 格式如k1=v1;k2=v2;k3=v3;(可结构化)
+
+### session
 
 + cookie存储用户标识，如userld
 + 用户信息则存储到session中
