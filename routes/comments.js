@@ -1,10 +1,11 @@
 const router = require('koa-router')()
 const { Comment } = require('../db/model')
+const loginCheck = require('../middlewares/loginCheck')
 
 router.prefix('/api') // 前缀
 
 // 定义路由：模拟获取留言板列表
-router.get('/list', async (ctx) => {
+router.get('/list', loginCheck, async (ctx) => {
   const query = ctx.query
   console.log('query', query)
   // ctx.body = 'api list'

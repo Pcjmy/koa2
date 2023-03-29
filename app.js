@@ -12,6 +12,8 @@ const index = require("./routes/index");
 const users = require("./routes/users");
 const comments = require("./routes/comments");
 
+const loginCheck = require("./middlewares/loginCheck");
+
 // error handler 错误处理器
 onerror(app);
 
@@ -63,6 +65,7 @@ app.use(async (ctx, next) => {
 //     ctx.body = "请登录";
 //   }
 // });
+// app.use(loginCheck) // 全部的路由，都要校验
 
 // routes 注册路由
 app.use(index.routes(), index.allowedMethods());
